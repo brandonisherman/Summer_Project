@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head lang="en">
-        <style>
-            #map-canvas {
-                width: 500px;
-                height: 400px;
-                background-color: #CCC;
-            }
-        </style>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
-
     </head>
-    <div id="map-canvas"></div>
-    <body>
-        <script type="text/javascript" src="initializeMap.js"></script>
+    <script type="text/javascript" src="initializeMap.js"></script> <!-- Maybe relocate? -->
+    <body onload="initialize()">
+    <div id="map-canvas" style="width: 500px; height: 400px;"></div>
+    <div>
         <form name="userInfo">
             <input type="radio" name="addressType" id="sa" value="streetAddress" checked>
-                <label for="sa">Street Address</label><br>
+            <label for="sa">Street Address</label><br>
             <input type="radio" name="addressType" id="rr" value="ruralRoute">
-                <label for="rr">Rural Route</label><br>
+            <label for="rr">Rural Route</label><br>
             <input type="radio" name="addressType" id="po" value="POBox">
-                <label for="po">P.O. Box</label><br>
+            <label for="po">P.O. Box</label><br>
 
             <p><label>Address Number:<input type="number" name="address" id="houseNumber"/></label>
                 <label>Street Name:<input type="text" name="address" id="street"/></label>
@@ -30,7 +23,10 @@
                 <label>State:<input type="text" name="address" id="state"/></label>
                 <label>ZIP Code:<input type="number" name="address" id="zip"/></label>
                 <br>
-                <input type="button" value="Next" onClick="processAddressInformation()"></p>
+                <input type="button" value="Next" onClick="codeAddress()"></p>
         </form>
+    </div>
+
+
     </body>
 </html>
