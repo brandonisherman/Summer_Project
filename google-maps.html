@@ -11,6 +11,7 @@
         <script src="https://maps.googleapis.com/maps/api/js"></script>
 
     </head>
+    <div id="map-canvas"></div>
     <body>
         <script type="text/javascript" src="initializeMap.js"></script>
         <form name="userInfo">
@@ -21,17 +22,15 @@
             <input type="radio" name="addressType" id="po" value="POBox">
                 <label for="po">P.O. Box</label><br>
 
-            <p><label>Address Number:<input type="number" name="housenumber"/></label>
-                <label>Street Name:<input type="text" name="street"/></label>
-                <label>Apt/Unit<input type="number" name="aptnumber"/>:</label>
+            <p><label>Address Number:<input type="number" name="address" id="houseNumber"/></label>
+                <label>Street Name:<input type="text" name="address" id="street"/></label>
+                <label>Apt/Unit<input type="number" name="address" id="aptNumber"/>:</label>
                 <br>
-                <label>City:<input type="text" name="city"/></label>
-                <label>State:<input type="text" name="state"/></label>
-                <label>ZIP Code:<input type="number" name="zipcode"/></label>
+                <label>City:<input type="text" name="address" id="city"/></label>
+                <label>State:<input type="text" name="address" id="state"/></label>
+                <label>ZIP Code:<input type="number" name="address" id="zip"/></label>
                 <br>
                 <input type="button" value="Next" onClick="processAddressInformation()"></p>
-
         </form>
-        <div id="map-canvas"></div>
     </body>
 </html>
