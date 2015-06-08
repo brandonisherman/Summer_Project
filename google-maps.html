@@ -14,10 +14,12 @@
     <body>
         <script type="text/javascript" src="initializeMap.js"></script>
         <form name="userInfo">
-            <input type="button" value="Street Address"><br>
-            <input type="button" value="Rural Route"><br>
-            <input type="button" value="P.O. Box"><br>
-
+            <input type="radio" name="addressType" id="sa" value="streetAddress" checked>
+                <label for="sa">Street Address</label><br>
+            <input type="radio" name="addressType" id="rr" value="ruralRoute">
+                <label for="rr">Rural Route</label><br>
+            <input type="radio" name="addressType" id="po" value="POBox">
+                <label for="po">P.O. Box</label><br>
 
             <p><label>Address Number:<input type="number" name="housenumber"/></label>
                 <label>Street Name:<input type="text" name="street"/></label>
