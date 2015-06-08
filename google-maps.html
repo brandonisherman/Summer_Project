@@ -1,48 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      #map-canvas {
-      width: 500px;
-      height: 400px;
-      background-color: #CCC;
-      }
-    </style>
-    <script src = "https://maps.googleapis.com/maps/api/js"></script>
-    <form name="userInfo">
-      Address: <input type="text"><br>
-        Latitude: <input type="number" name="latlong">
-            Longitude: <input type="number" name="latlong"><br>
-      <input type="radio" name="maptype" value=google.maps.MapTypeId.ROADMAP checked>Road Map<br>
-      <input type="radio" name="maptype" value=google.maps.MapTypeId.SATELLITE>Satellite<br>
-      <input type="radio" name="maptype" value=google.maps.MapTypeId.HYBRID>Hybrid<br>
-      <input type="radio" name="maptype" value=google.maps.MapTypeId.TERRAIN>Terrain<br>
-    </form>
-    <script>
-      // Initializes an interactive Google Map
-      function initialize() {
-          var mapCanvas = document.getElementById('map-canvas');
-          var mapOptions = {
-              center: new google.maps.LatLng(40.4433, -79.9436),
-              zoom: 17,
-              mapTypeID: google.maps.MapTypeId.ROADMAP
-           }
-          var map = new google.maps.Map(mapCanvas, mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+    <head lang="en">
+        <style>
+            #map-canvas {
+                width: 500px;
+                height: 400px;
+                background-color: #CCC;
+            }
+        </style>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
 
-      // Pick a different map type depending on the user's choice of radio
-      // button.
-      var radios = document.forms["mapTypeButtons"].elements["maptype"];
-      for (var i=0, max = radios.length; i < max; i++) {
-          if (document.userInfo.radios[i].checked) {
-              map.mapOptions.mapTypeID = document.userInfo.radios[i].value;
-              break;
-          }
-      }
-    </script>
-  </head>
-  <body>
-      <div id="map-canvas"></div>
-  </body>
+    </head>
+    <body>
+        <script type="text/javascript" src="initialize.js"></script>
+        <form name="userInfo">
+            <input type="button" value="Street Address"><br>
+            <input type="button" value="Rural Route"><br>
+            <input type="button" value="P.O. Box"><br>
+
+
+            <p><label>Address Number:<input type="number" name="housenumber"/></label>
+                <label>Street Name:<input type="text" name="street"/></label>
+                <label>Apt/Unit<input type="number" name="aptnumber"/>:</label>
+                <br>
+                <label>City:<input type="text" name="city"/></label>
+                <label>State:<input type="text" name="state"/></label>
+                <label>ZIP Code:<input type="number" name="zipcode"/></label>
+                <br>
+                <input type="button" value="Next" onClick="processAddressInformation()"></p>
+
+        </form>
+        <div id="map-canvas"></div>
+    </body>
 </html>
