@@ -6,9 +6,7 @@
 <script type="text/javascript" src="initializeMap.js"></script> <!-- Maybe relocate? -->
 <body onload="initialize()">
 
-<div>
-    <form name="userInfo">
-
+    <form name="addressChoice">
         <p><input type="radio" name="addressType" id="sa" value="streetAddress" checked>
             <label for="sa">Street Address</label>
             <input type="radio" name="addressType" id="rr" value="ruralRoute">
@@ -16,13 +14,14 @@
             <input type="radio" name="addressType" id="po" value="POBox">
             <label for="po">P.O. Box</label>
             <br></p>
-
+    </form>
+    <form name="address">
         <p><label>Address Number:<input type="number" name="address" id="houseNumber"/></label>
             <label>Street Name:<input type="text" name="address" id="street"/></label>
             <label>Apt/Unit:<input type="number" name="address" id="aptNumber"/></label>
             <br>
             <label>City:<input type="text" name="address" id="city"/></label>
-            <label>State:<select name="address">  <!-- There isn't a more compact way to do this -->
+            <label>State:<select name="address">  <!-- There isn't a more compact way to do this. -->
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -78,13 +77,14 @@
             </label>
             <label>ZIP Code:<input type="number" name="address" id="zip"/></label>
             <br>
-
-        <p><label>Rural Route Descriptor:<input type="text" name="ruralroute" id="descriptor"/></label>
-            <label>Rural Route #:<input type="number" name="ruralroute" id="routeNumber"/></label>
-            <label>Box #: <input type="number" name="ruralroute" id="boxNumber"/></label>
+    </form>
+    <form name="ruralRoute">
+        <p><label>Rural Route Descriptor:<input type="text" name="ruralRoute" id="descriptor"/></label>
+            <label>Rural Route #:<input type="number" name="ruralRoute" id="routeNumber"/></label>
+            <label>Box #: <input type="number" name="ruralRoute" id="boxNumber"/></label>
             <br>
-            <label>City:<input type="text" name="ruralroute" id="rrcity"/></label>
-            <label>State:<select name="ruralroute">
+            <label>City:<input type="text" name="ruralRoute" id="rrcity"/></label>
+            <label>State:<select name="ruralRoute">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -138,12 +138,13 @@
                 <option value="WY">Wyoming</option>
             </select>
             </label>
-            <label>ZIP Code:<input type="number" name="ruralroute" id="rrzip"/></label>
+            <label>ZIP Code:<input type="number" name="ruralRoute" id="rrZip"/></label>
             <br>
-
-        <p><label>P.O. Box #:<input type="number" name="poBox" id="poBox"/></label>
+    </form>
+    <form name="poBox">
+        <label>P.O. Box #:<input type="number" name="poBox" id="poBox"/></label>
             <br>
-            <label>City:<input type="text" name="poBox" id="pocity"/></label>
+            <label>City:<input type="text" name="poBox" id="poCity"/></label>
             <label>State:<select name="poBox">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -198,15 +199,45 @@
                 <option value="WY">Wyoming</option>
             </select>
             </label>
-            <label>ZIP Code:<input type="number" name="poBox" id="pozip"/></label>
+            <label>ZIP Code:<input type="number" name="poBox" id="poZip"/></label>
             <br>
-
-            <input type="button" value="Next" onClick="codeAddress()"></p>
-
-
-
     </form>
-</div>
+        <form name="nextButton">
+            <input type="button" value="Next" onClick="codeAddress()">
+        </form>
+
+<script type="text/javascript">
+    // Code modified from an answer here:
+    // http://stackoverflow.com/questions/20468457/show-form-based-on-radio-button-select
+
+    var radios = document.getElementsByName('addressType');
+    var address = document.getElementById('address');
+    var ruralRoute = document.getElementById('ruralRoute');
+    var poBox = document.getElementById('poBox');
+
+    address.style.display = 'block';
+    ruralRoute.style.display = 'none';
+    poBox.style.display = 'none';
+
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].onclick = function() {
+            var val = this.value;
+            if(val == 'streetAddress') {
+                address.style.display = 'block';
+                ruralRoute.style.display = 'none';
+                poBox.style.display = 'none';
+            } else if (val == 'ruralRoute') {
+                address.style.display = 'none';
+                ruralRoute.style.display = 'block';
+                poBox.style.display = 'none';
+            } else {
+                address.style.display = 'none';
+                ruralRoute.style.display = 'none';
+                poBox.style.display = 'block';
+            }
+        }
+    }
+</script>
 
 <div id="map-canvas" style="width: 500px; height: 400px;"></div>
 
