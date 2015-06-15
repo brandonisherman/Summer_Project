@@ -24,21 +24,19 @@ function codeAddress() {
 
     var address = "";   // Initializing as an empty string avoids undefined value
     var addressArray = document.getElementsByName("address");
-    for (var i=0; i < addressArray.length; i++) { // -1 makes sure we don't concatenate zip code
+    for (var i=1; i < addressArray.length; i++) { // Starting at 1 makes sure we don't append undefined elements
         /* The below switch block concatenates fields to make an address field. */
         switch(addressArray[i].id) {
             case ("aptNumber" || "zip"):  // aptNumber and zip fields will make the geolocation request fail
                 break;
-            case ("street"):
+            case ("streetName" || "city"):
                 address += addressArray[i].value + ", ";
                 break;
-            case ("city"):
-                address += addressArray[i].value + ", ";
-                break;
-            default:
+            default:   // i.e. for any element where we don't want to append a comma
                 address += addressArray[i].value + " ";
         }
     }
+
     geocoder.geocode({'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);

@@ -21,11 +21,11 @@
 </form>
 <form id="street" name="address">
     <p><label>Address Number:<input type="text" name="address" id="houseNumber"/></label>
-        <label>Street Name:<input type="text" name="address" id="streetname"/></label>
+        <label>Street Name:<input type="text" name="address" id="streetName"/></label>
         <label>Apt/Unit:<input type="text" name="address" id="aptNumber"/></label>
         <br>
         <label>City:<input type="text" name="address" id="city"/></label>
-        <label>State:<select name="address">  <!-- There isn't a more compact way to do this. -->
+        <label>State:<select name="address" id="state">  <!-- There isn't a more compact way to do this. -->
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -79,7 +79,7 @@
             <option value="WY">Wyoming</option>
         </select>
         </label>
-        <label>ZIP Code:<input type="number" name="address" id="zip"/></label>
+        <label>ZIP Code:<input type="text" name="address" id="zip"/></label>
     </p>
     <br>
 </form>
