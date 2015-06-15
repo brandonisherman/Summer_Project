@@ -83,12 +83,18 @@
     </p>
     <br>
 </form>
-<form id="ruralRoute" name="ruralRoute" style="display:none">
-    <p><label>Rural Route Descriptor:<input type="text" name="ruralRoute" id="descriptor"/></label>
+<form id="ruralRoute" name="address" style="display:none">
+    <p><label>Rural Route Descriptor:<select name="ruralRoute" id="descriptor">
+            <option value="RR">RR</option>
+            <option value="HC">HC</option>
+            <option value="SR">SR</option>
+            <option value="PSC">PSC</option>
+            <option value="RTE">RTE</option></select></label>
+
         <label>Rural Route #:<input type="text" name="ruralRoute" id="routeNumber"/></label>
         <label>Box #: <input type="text" name="ruralRoute" id="boxNumber"/></label>
         <br>
-        <label>City:<input type="text" name="ruralRoute" id="rrcity"/></label>
+        <label>City:<input type="text" name="ruralRoute" id="rrCity"/></label>
         <label>State:<select name="ruralRoute">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -147,7 +153,7 @@
     </p>
     <br>
 </form>
-<form id="POBox" name="poBox" style="display:none">
+<form id="POBox" name="address" style="display:none">
     <p>
         <label>P.O. Box #:<input type="text" name="poBox" id="poBox"/></label>
         <br>
