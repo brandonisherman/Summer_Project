@@ -7,19 +7,22 @@
 </head>
 <body onload="initialize()">
 
+<b>Where did you live on July 1, 2014?</b><br><br>
+<i>Please select the type of address associated with your residence.</i><br><br>   <!-- Center this with CSS -->
 <form name="addressChoice">
-    <p><input type="radio" name="addressType" id="sa" value="streetAddress" onClick="showStreet()" checked>
+    <b>Address Type:</b>
+    <input type="radio" name="addressType" id="sa" value="streetAddress" onClick="showStreet()" checked>
         <label for="sa">Street Address</label>
         <input type="radio" name="addressType" id="rr" value="ruralRoute" onClick="showRural()">
         <label for="rr">Rural Route</label>
         <input type="radio" name="addressType" id="po" value="POBox" onClick="showPOBox()">
         <label for="po">P.O. Box</label>
-        <br></p>
+        <br>
 </form>
 <form id="street" name="address">
-    <p><label>Address Number:<input type="number" name="address" id="houseNumber"/></label>
+    <p><label>Address Number:<input type="text" name="address" id="houseNumber"/></label>
         <label>Street Name:<input type="text" name="address" id="streetname"/></label>
-        <label>Apt/Unit:<input type="number" name="address" id="aptNumber"/></label>
+        <label>Apt/Unit:<input type="text" name="address" id="aptNumber"/></label>
         <br>
         <label>City:<input type="text" name="address" id="city"/></label>
         <label>State:<select name="address">  <!-- There isn't a more compact way to do this. -->
@@ -82,8 +85,8 @@
 </form>
 <form id="ruralRoute" name="ruralRoute" style="display:none">
     <p><label>Rural Route Descriptor:<input type="text" name="ruralRoute" id="descriptor"/></label>
-        <label>Rural Route #:<input type="number" name="ruralRoute" id="routeNumber"/></label>
-        <label>Box #: <input type="number" name="ruralRoute" id="boxNumber"/></label>
+        <label>Rural Route #:<input type="text" name="ruralRoute" id="routeNumber"/></label>
+        <label>Box #: <input type="text" name="ruralRoute" id="boxNumber"/></label>
         <br>
         <label>City:<input type="text" name="ruralRoute" id="rrcity"/></label>
         <label>State:<select name="ruralRoute">
@@ -140,13 +143,13 @@
             <option value="WY">Wyoming</option>
         </select>
         </label>
-        <label>ZIP Code:<input type="number" name="ruralRoute" id="rrZip"/></label>
+        <label>ZIP Code:<input type="text" name="ruralRoute" id="rrZip"/></label>
     </p>
     <br>
 </form>
 <form id="POBox" name="poBox" style="display:none">
     <p>
-        <label>P.O. Box #:<input type="number" name="poBox" id="poBox"/></label>
+        <label>P.O. Box #:<input type="text" name="poBox" id="poBox"/></label>
         <br>
         <label>City:<input type="text" name="poBox" id="poCity"/></label>
         <label>State:<select name="poBox">
@@ -203,14 +206,14 @@
             <option value="WY">Wyoming</option>
         </select>
         </label>
-        <label>ZIP Code:<input type="number" name="poBox" id="poZip"/></label>
+        <label>ZIP Code:<input type="text" name="poBox" id="poZip"/></label>
     </p>
     <br>
 </form>
 <form name="nextButton">
     <input type="button" value="Next" onClick="codeAddress()">
 </form>
-
+<br><br>
 
 <div id="map-canvas" style="width: 500px; height: 400px;"></div>
 
