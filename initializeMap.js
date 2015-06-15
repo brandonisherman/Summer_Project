@@ -18,10 +18,9 @@ function initialize() {
 function codeAddress() {
     /* address is a concatenation of all of the properties of an address
      that the user input into the userInfo form.
-
      More information on geocoding available at
      https://developers.google.com/maps/documentation/javascript/geocoding
-    */
+     */
 
     var address = "";   // Initializing as an empty string avoids undefined value
     var addressArray = document.getElementsByName("address");

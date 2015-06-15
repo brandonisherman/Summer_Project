@@ -1,243 +1,216 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+    <script type="text/javascript" src="initializeMap.js"></script>
+    <script type="text/javascript" src="addressTypeToggle.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
-<script type="text/javascript" src="initializeMap.js"></script> <!-- Maybe relocate? -->
 <body onload="initialize()">
 
-    <form name="addressChoice">
-        <p><input type="radio" name="addressType" id="sa" value="streetAddress" checked>
-            <label for="sa">Street Address</label>
-            <input type="radio" name="addressType" id="rr" value="ruralRoute">
-            <label for="rr">Rural Route</label>
-            <input type="radio" name="addressType" id="po" value="POBox">
-            <label for="po">P.O. Box</label>
-            <br></p>
-    </form>
-    <form name="address">
-        <p><label>Address Number:<input type="number" name="address" id="houseNumber"/></label>
-            <label>Street Name:<input type="text" name="address" id="street"/></label>
-            <label>Apt/Unit:<input type="number" name="address" id="aptNumber"/></label>
-            <br>
-            <label>City:<input type="text" name="address" id="city"/></label>
-            <label>State:<select name="address">  <!-- There isn't a more compact way to do this. -->
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-            </select>
-            </label>
-            <label>ZIP Code:<input type="number" name="address" id="zip"/></label>
-            <br>
-    </form>
-    <form name="ruralRoute">
-        <p><label>Rural Route Descriptor:<input type="text" name="ruralRoute" id="descriptor"/></label>
-            <label>Rural Route #:<input type="number" name="ruralRoute" id="routeNumber"/></label>
-            <label>Box #: <input type="number" name="ruralRoute" id="boxNumber"/></label>
-            <br>
-            <label>City:<input type="text" name="ruralRoute" id="rrcity"/></label>
-            <label>State:<select name="ruralRoute">
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-            </select>
-            </label>
-            <label>ZIP Code:<input type="number" name="ruralRoute" id="rrZip"/></label>
-            <br>
-    </form>
-    <form name="poBox">
+<form name="addressChoice">
+    <p><input type="radio" name="addressType" id="sa" value="streetAddress" onClick="showStreet()" checked>
+        <label for="sa">Street Address</label>
+        <input type="radio" name="addressType" id="rr" value="ruralRoute" onClick="showRural()">
+        <label for="rr">Rural Route</label>
+        <input type="radio" name="addressType" id="po" value="POBox" onClick="showPOBox()">
+        <label for="po">P.O. Box</label>
+        <br></p>
+</form>
+<form id="street" name="address">
+    <p><label>Address Number:<input type="number" name="address" id="houseNumber"/></label>
+        <label>Street Name:<input type="text" name="address" id="streetname"/></label>
+        <label>Apt/Unit:<input type="number" name="address" id="aptNumber"/></label>
+        <br>
+        <label>City:<input type="text" name="address" id="city"/></label>
+        <label>State:<select name="address">  <!-- There isn't a more compact way to do this. -->
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+        </select>
+        </label>
+        <label>ZIP Code:<input type="number" name="address" id="zip"/></label>
+    </p>
+    <br>
+</form>
+<form id="ruralRoute" name="ruralRoute" style="display:none">
+    <p><label>Rural Route Descriptor:<input type="text" name="ruralRoute" id="descriptor"/></label>
+        <label>Rural Route #:<input type="number" name="ruralRoute" id="routeNumber"/></label>
+        <label>Box #: <input type="number" name="ruralRoute" id="boxNumber"/></label>
+        <br>
+        <label>City:<input type="text" name="ruralRoute" id="rrcity"/></label>
+        <label>State:<select name="ruralRoute">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+        </select>
+        </label>
+        <label>ZIP Code:<input type="number" name="ruralRoute" id="rrZip"/></label>
+    </p>
+    <br>
+</form>
+<form id="POBox" name="poBox" style="display:none">
+    <p>
         <label>P.O. Box #:<input type="number" name="poBox" id="poBox"/></label>
-            <br>
-            <label>City:<input type="text" name="poBox" id="poCity"/></label>
-            <label>State:<select name="poBox">
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-            </select>
-            </label>
-            <label>ZIP Code:<input type="number" name="poBox" id="poZip"/></label>
-            <br>
-    </form>
-        <form name="nextButton">
-            <input type="button" value="Next" onClick="codeAddress()">
-        </form>
+        <br>
+        <label>City:<input type="text" name="poBox" id="poCity"/></label>
+        <label>State:<select name="poBox">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+        </select>
+        </label>
+        <label>ZIP Code:<input type="number" name="poBox" id="poZip"/></label>
+    </p>
+    <br>
+</form>
+<form name="nextButton">
+    <input type="button" value="Next" onClick="codeAddress()">
+</form>
 
-<script type="text/javascript">
-    // Code modified from an answer here:
-    // http://stackoverflow.com/questions/20468457/show-form-based-on-radio-button-select
-
-    var radios = document.getElementsByName('addressType');
-    var address = document.getElementById('address');
-    var ruralRoute = document.getElementById('ruralRoute');
-    var poBox = document.getElementById('poBox');
-
-    address.style.display = 'block';
-    ruralRoute.style.display = 'none';
-    poBox.style.display = 'none';
-
-    for (var i = 0; i < radios.length; i++) {
-        radios[i].onclick = function() {
-            var val = this.value;
-            if(val == 'streetAddress') {
-                address.style.display = 'block';
-                ruralRoute.style.display = 'none';
-                poBox.style.display = 'none';
-            } else if (val == 'ruralRoute') {
-                address.style.display = 'none';
-                ruralRoute.style.display = 'block';
-                poBox.style.display = 'none';
-            } else {
-                address.style.display = 'none';
-                ruralRoute.style.display = 'none';
-                poBox.style.display = 'block';
-            }
-        }
-    }
-</script>
 
 <div id="map-canvas" style="width: 500px; height: 400px;"></div>
 
