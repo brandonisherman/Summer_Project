@@ -81,9 +81,11 @@
         </label>
         <label>ZIP Code:<input type="text" name="address" id="zip"/></label>
     </p>
+    <input type="button" value="Next" onClick="codeAddress()">
     <br>
+
 </form>
-<form id="ruralRoute" name="address" style="display:none">
+<form id="ruralRoute" name="ruralRoute" style="display:none">
     <p><label>Rural Route Descriptor:<select name="ruralRoute" id="descriptor">
             <option value="RR">RR</option>
             <option value="HC">HC</option>
@@ -95,7 +97,7 @@
         <label>Box #: <input type="text" name="ruralRoute" id="boxNumber"/></label>
         <br>
         <label>City:<input type="text" name="ruralRoute" id="rrCity"/></label>
-        <label>State:<select name="ruralRoute">
+        <label>State:<select name="ruralRoute" id="rrState">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -151,6 +153,7 @@
         </label>
         <label>ZIP Code:<input type="text" name="ruralRoute" id="rrZip"/></label>
     </p>
+    <input type="button" value="Next" onClick="codeRuralRoute()">
     <br>
 </form>
 <form id="POBox" name="address" style="display:none">
@@ -214,10 +217,8 @@
         </label>
         <label>ZIP Code:<input type="text" name="poBox" id="poZip"/></label>
     </p>
+    <input type="button" value="Next" onClick="codePOBox()">
     <br>
-</form>
-<form name="nextButton">
-    <input type="button" value="Next" onClick="codeAddress()">
 </form>
 <br><br>
 
