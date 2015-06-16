@@ -66,7 +66,8 @@ function codeRuralRoute() {
    to know WHICH post office Google assumes.
  */
 function codePOBox() {
-    var address = "US Post Office, ";
+    // var address = "US Post Office, ";
+    var address = "";
     var addressArray = document.getElementsByName("poBox");
     for (var i=1; i < addressArray.length; i++) {
         switch(addressArray[i].id) {
