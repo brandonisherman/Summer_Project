@@ -43,7 +43,6 @@ function codeAddress() {
 function codeRuralRoute() {
     var address = "";
     var addressArray = document.getElementsByName("ruralRoute");
-    alert(address);
     for (var i=1; i < addressArray.length; i++) {  // Build the address from the html text boxes
         switch(addressArray[i].id) {
             case("rrZip"):
@@ -59,7 +58,6 @@ function codeRuralRoute() {
 
         }
     }
-    alert(address);
     geocodeAddress(address);
 }
 
