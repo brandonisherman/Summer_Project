@@ -61,6 +61,28 @@ function codeRuralRoute() {
     geocodeAddress(address);
 }
 
+/* Note:  We have not yet figured out how to go from a P.O. Box to its respective post office,
+   so this function geocodes just "US Post Office, <City>, <State>" for now.  There is no way
+   to know WHICH post office Google assumes.
+ */
+function codePOBox() {
+    var address = "US Post Office, ";
+    var addressArray = document.getElementsByName("poBox");
+    for (var i=1; i < addressArray.length; i++) {
+        switch(addressArray[i].id) {
+            case("poCity"):
+                address += addressArray[i].value + ", ";
+                break;
+            case("poState"):
+                address += addressArray[i].value + " ";
+                break;
+            default:
+                break;
+        }
+    }
+    geocodeAddress(address);
+}
+
 function geocodeAddress(address) {
     geocoder.geocode({'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
