@@ -36,7 +36,33 @@ function codeAddress() {
                 address += addressArray[i].value + " ";
         }
     }
+    geocodeAddress(address);
+}
 
+function codeRuralRoute() {
+    var address = "";
+    var addressArray = document.getElementsByName("ruralRoute");
+    alert(address);
+    for (var i=0; i < addressArray.length; i++) {  // Build the address from the html text boxes
+        switch(addressArray[i].id) {
+            case("rrZip"):
+                break;
+            case("boxNumber"):
+                address += "Box " + addressArray[i] + " ,";
+                break;
+            case("rrCity"):
+                address += addressArray[i] + " ,";
+                break;
+            default:
+                address += addressArray[i] + " ";
+
+        }
+    }
+    alert(address);
+    geocodeAddress(address);
+}
+
+function geocodeAddress(address) {
     geocoder.geocode({'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
@@ -48,5 +74,4 @@ function codeAddress() {
             alert("Geocode was not successful for the following reason: " + status);
         }
     })
-
 }
