@@ -1,6 +1,7 @@
 // Initializes an interactive Google Map with a geocoder
 var geocoder;
 var map;
+
 function initialize() {
     geocoder = new google.maps.Geocoder();
     var lat = 38.8977;  // latitude and longitude of the White House
@@ -43,18 +44,18 @@ function codeRuralRoute() {
     var address = "";
     var addressArray = document.getElementsByName("ruralRoute");
     alert(address);
-    for (var i=0; i < addressArray.length; i++) {  // Build the address from the html text boxes
+    for (var i=1; i < addressArray.length; i++) {  // Build the address from the html text boxes
         switch(addressArray[i].id) {
             case("rrZip"):
                 break;
             case("boxNumber"):
-                address += "Box " + addressArray[i] + " ,";
+                address += "Box " + addressArray[i].value + ", ";
                 break;
             case("rrCity"):
-                address += addressArray[i] + " ,";
+                address += addressArray[i].value + ", ";
                 break;
             default:
-                address += addressArray[i] + " ";
+                address += addressArray[i].value + " ";
 
         }
     }
