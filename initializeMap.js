@@ -1,7 +1,6 @@
 // Initializes an interactive Google Map with a geocoder
 var geocoder;
 var map;
-var markers = [];
 
 function initialize() {
     geocoder = new google.maps.Geocoder();
@@ -86,8 +85,8 @@ function codePOBox() {
 
 function geocodeAddress(address) {
     geocoder.geocode({'address': address}, function(results, status) {
-        /*  Look up what the "partial_match" field is on the APi
-            Essentially, it is true whenever Google used some sort of autocompletion to fix the users input
+        /*  Essentially, partial_match is true whenever Google uses some sort of autocompletion
+            to fix the user input
             Step 1- check if "partial_match" was defined
                   -  For some reason, "partial_match" isn't initialized when the user gives a valid input
             Step 2- if the user gave a bad input, warn them
