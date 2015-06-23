@@ -83,28 +83,28 @@ function codePOBox() {
 }
 
 function geocodeAddress(address) {
-    geocoder.geocode({'address': address}, function(results, status) {
+    geocoder.geocode({'address': address}, function (results, status) {
         /*  Essentially, partial_match is true whenever Google uses some sort of autocompletion
-            to fix the user input
-            Step 1- check if "partial_match" was defined
-                  -  For some reason, "partial_match" isn't initialized when the user gives a valid input
-            Step 2- if the user gave a bad input, warn them
-                  -  for your real code, you should put something other than a snarky little message
-            Information on partial_match can be found at
-            https://developers.google.com/maps/documentation/geocoding/
-        */
+         to fix the user input
+         Step 1- check if "partial_match" was defined
+         -  For some reason, "partial_match" isn't initialized when the user gives a valid input
+         Step 2- if the user gave a bad input, warn them
+         -  for your real code, you should put something other than a snarky little message
+         Information on partial_match can be found at
+         https://developers.google.com/maps/documentation/geocoding/
+         */
 
         if (typeof results[0].partial_match !== 'undefined') {
-            alert("Not a correct and/or real address");
-            return;  // Used for testing purposes; does not return anything on the map.
+            alert("We did not find a match for your address. You entered:" + " " + address+ " Did you mean:" +  " " + results[0].formatted_address+ "?");
+           //return;  // Used for testing purposes; does not return anything on the map. //I want to return the partial match
         }
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
-            // Erase the existing marker if there is already one displayed
             if (map.marker) {    // See lines 53 and 54 at http://jsfiddle.net/zbZ8p/1/
                 map.marker.setMap(null);
-                delete map.marker;
+                delete map.marker;    // Erase the existing marker
             }
+
             map.marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
@@ -113,5 +113,8 @@ function geocodeAddress(address) {
             alert("Geocode was not successful for the following reason: " + status);
         }
     })
-
 }
+
+
+
+
