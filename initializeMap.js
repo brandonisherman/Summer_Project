@@ -1,6 +1,7 @@
 // Initializes an interactive Google Map with a geocoder
 var geocoder;
 var map;
+var markers = [];
 
 function initialize() {
     geocoder = new google.maps.Geocoder();
@@ -22,7 +23,6 @@ function codeAddress() {
      More information on geocoding available at
      https://developers.google.com/maps/documentation/javascript/geocoding
      */
-
     var address = "";   // Initializing as an empty string avoids undefined value
     var addressArray = document.getElementsByName("address");
     for (var i=1; i < addressArray.length; i++) { // Starting at 1 makes sure we don't append undefined elements
@@ -86,6 +86,19 @@ function codePOBox() {
 
 function geocodeAddress(address) {
     geocoder.geocode({'address': address}, function(results, status) {
+        /*  Look up what the "partial_match" field is on the APi
+            Essentially, it is true whenever Google used some sort of autocompletion to fix the users input
+            Step 1- check if "partial_match" was defined
+                  -  For some reason, "partial_match" isn't initialized when the user gives a valid input
+            Step 2- if the user gave a bad input, warn them
+                  -  for your real code, you should put something other than a snarky little message
+            Information on partial_match can be found at
+            https://developers.google.com/maps/documentation/geocoding/
+        */
+        if (typeof results[0].partial_match !== 'undefined') // Step 1
+        {
+            alert("Not a correct and/or real address"); //Step 2
+        }
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker( {
