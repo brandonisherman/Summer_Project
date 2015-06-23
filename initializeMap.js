@@ -14,8 +14,8 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(mapCanvas, mapOptions);
-    google.maps.event.addDomListener(window, 'load', initialize);
 }
+google.maps.event.addDomListener(window, 'load', initialize);
 
 function codeAddress() {
     /* address is a concatenation of all of the properties of an address
@@ -95,13 +95,19 @@ function geocodeAddress(address) {
             Information on partial_match can be found at
             https://developers.google.com/maps/documentation/geocoding/
         */
-        if (typeof results[0].partial_match !== 'undefined') // Step 1
-        {
-            alert("Not a correct and/or real address"); //Step 2
+
+        if (typeof results[0].partial_match !== 'undefined') {
+            alert("Not a correct and/or real address");
+            return;  // Used for testing purposes; does not return anything on the map.
         }
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker( {
+            if (map.marker) {    // See lines 53 and 54 at http://jsfiddle.net/zbZ8p/1/
+                map.marker.setMap(null);
+                delete map.marker;    // Erase the existing marker
+            }
+
+            map.marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
             });
@@ -109,4 +115,5 @@ function geocodeAddress(address) {
             alert("Geocode was not successful for the following reason: " + status);
         }
     })
+
 }
