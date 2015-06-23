@@ -1,7 +1,7 @@
-// Initializes an interactive Google Map with a geocoder
-var geocoder;
-var map;
+var geocoder;  // A geocoder for map
+var map;     // The actual interactive map on the page
 
+// Initializes an interactive Google Map with a geocoder
 function initialize() {
     geocoder = new google.maps.Geocoder();
     var lat = 38.8977;  // latitude and longitude of the White House
@@ -9,7 +9,7 @@ function initialize() {
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
         center: new google.maps.LatLng(lat,long),
-        zoom: 17,  // 13 should be default, but we changed the value for debugging purposes
+        zoom: 17,  // 17 is a reasonably high zoom level
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(mapCanvas, mapOptions);
@@ -24,7 +24,7 @@ function codeAddress() {
      */
     var address = "";   // Initializing as an empty string avoids undefined value
     var addressArray = document.getElementsByName("address");
-    for (var i=1; i < addressArray.length; i++) { // Starting at 1 makes sure we don't append undefined elements
+    for (var i=1; i < addressArray.length; i++) { // Starting at 1 ensures we don't append undefined elements
         /* The below switch block concatenates fields to make an address field. */
         switch(addressArray[i].id) {
             case ("aptNumber" || "zip"):  // aptNumber and zip fields will make the geolocation request fail
@@ -61,8 +61,7 @@ function codeRuralRoute() {
 }
 
 /* Note:  We have not yet figured out how to go from a P.O. Box to its respective post office,
-   so this function geocodes just "US Post Office, <City>, <State>" for now.  There is no way
-   to know WHICH post office Google assumes.
+   so this function geocodes just "<City>, <State>" for now.
  */
 function codePOBox() {
     // var address = "US Post Office, ";
@@ -101,11 +100,11 @@ function geocodeAddress(address) {
         }
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
+            // Erase the existing marker if there is already one displayed
             if (map.marker) {    // See lines 53 and 54 at http://jsfiddle.net/zbZ8p/1/
                 map.marker.setMap(null);
-                delete map.marker;    // Erase the existing marker
+                delete map.marker;
             }
-
             map.marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
