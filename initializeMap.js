@@ -89,15 +89,26 @@ function geocodeAddress(address) {
          Step 1- check if "partial_match" was defined
          -  For some reason, "partial_match" isn't initialized when the user gives a valid input
          Step 2- if the user gave a bad input, warn them
-         -  for your real code, you should put something other than a snarky little message
          Information on partial_match can be found at
          https://developers.google.com/maps/documentation/geocoding/
          */
 
         if (typeof results[0].partial_match !== 'undefined') {
-            alert("We did not find a match for your address. You entered:" + " " + address+ " " +
-                " \n Did you mean:" +  " " + results[0].formatted_address+ "?");
-           //return;  // Used for testing purposes; does not return anything on the map. //I want to return the partial match
+            var answer = confirm ("We could not find a match for your address. You entered:" + " " + address+ " " +
+                " \n \n Did you mean: " + results[0].formatted_address + "?"+
+                " \n \n Press 'OK' if you would like to submit the suggested address or press " +
+                "'Cancel' if you would like to return to the address prompt screen.");
+            if (answer){
+               // return;
+            }
+
+            else {
+                alert ("Please Re-Enter your correct address and Press 'Next'");
+            }
+
+            /* var r= confirm("We did not find a match for your address. You entered:" + " " + address+ " " +
+             " \n Did you mean:" +  " " + results[0].formatted_address+ "?");
+             //return;  // Used for testing purposes; does not return anything on the map. //I want to return the partial match*/
         }
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
@@ -115,7 +126,4 @@ function geocodeAddress(address) {
         }
     })
 }
-
-
-
 
