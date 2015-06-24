@@ -95,7 +95,8 @@ function geocodeAddress(address) {
          */
 
         if (typeof results[0].partial_match !== 'undefined') {
-            alert("We did not find a match for your address. You entered:" + " " + address+ " Did you mean:" +  " " + results[0].formatted_address+ "?");
+            alert("We did not find a match for your address. You entered:" + " " + address+ " " +
+                " \n Did you mean:" +  " " + results[0].formatted_address+ "?");
            //return;  // Used for testing purposes; does not return anything on the map. //I want to return the partial match
         }
         if (status == google.maps.GeocoderStatus.OK) {
