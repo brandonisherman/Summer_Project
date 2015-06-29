@@ -4,11 +4,38 @@
 .question {
     font: italic 90% Verdana, Arial, sans-serif;
 }
+/* .addressType and .address do not translate into CSS. This is done using the form selector below!*/
 
-.addressType {
+
+/*.addressType {
     font: bold 130% Verdana, Arial, sans-serif;
 }
 
 .address {
     font: bold 90% Verdana, Arial, sans-serif;
+}*/
+
+
+#button1 {
+    width: 7.5em;
+    height: 2.7em;
+}
+
+#button2 {
+    width: 7.5em;
+    height: 2.7em;
+}
+
+#button3 {
+    width: 7.5em;
+    height: 2.7em;
+}
+#map-canvas{
+    border-style: double;
+    border-width: 5px;
+}
+
+form{
+    font: bold 90% Verdana, Arial, sans-serif;
+
 }
