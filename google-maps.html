@@ -2,12 +2,14 @@
 <html>
 <head lang="en">
     <link rel="stylesheet" href="textFormatting.css"/>
-    <script type="text/javascript" src="initializeMap.js"></script>  <!-- Change to initializeMap if doing experiment. -->
+    <script type="text/javascript" src="initializeMap.js"></script>
     <script type="text/javascript" src="addressTypeToggle.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script type="text/javascript" src="formtoJSON-DONTACTUALLYUSETHIS.js"></script>
 </head>
-<body onload="initialize()">
+<body onload="initialize(randomize=true)">
 
 <span class="bigQuestion">Where did you live on July 1, 2014?</span><br><br>
 <span class="question"><i>Please select the type of address associated with your residence.</i></span><br><br>   <!-- Center this with CSS -->
