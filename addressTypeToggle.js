@@ -1,3 +1,6 @@
+/**
+ * Toggles between three different forms, each with its own distinct fields and submit button.
+ */
 function showStreet() {
 
     document.getElementById("street").style.display = "initial";
